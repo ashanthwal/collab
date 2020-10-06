@@ -13,7 +13,9 @@ function EventDashboard({ formOpen, setFormOpen }) {
           <EventList events={events} />
         </Grid.Column>
         <Grid.Column width={6}>
-          {formOpen === true && <EventForm setFormOpen={setFormOpen} />}
+          {formOpen === true && (
+            <EventForm setFormOpen={setFormOpen} setEvents={setEvents} />
+          )}
         </Grid.Column>
       </Grid>
     </div>
