@@ -1,11 +1,12 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { Menu, Container, Button } from "semantic-ui-react";
 
 function Navbar({ setFormOpen }) {
   return (
     <Menu inverted fixed="top">
       <Container>
-        <Menu.Item header>
+        <Menu.Item as={NavLink} exact to="/" header>
           <img
             src="Assets/assets/logo.png"
             alt="logo"
@@ -14,9 +15,9 @@ function Navbar({ setFormOpen }) {
           Collab
         </Menu.Item>
 
-        <Menu.Item name="Events" />
+        <Menu.Item name="Events" as={NavLink} to="/events" />
 
-        <Menu.Item>
+        <Menu.Item as={NavLink} to="/createEvent">
           <Button
             onClick={() => setFormOpen(true)}
             positive
