@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import { Route } from "react-router-dom";
 import { Container } from "semantic-ui-react";
 import Homepage from "../../features/home/Homepage";
@@ -8,19 +8,6 @@ import EventDetailedPage from "../../features/events/eventsDetailed/EventDetaile
 import Navbar from "../../features/nav/Navbar";
 
 function App() {
-  const [formOpen, setFormOpen] = useState(false);
-  const [selectedEvent, setSelectedEvent] = useState(null);
-
-  function handleSelectEvent(event) {
-    setSelectedEvent(event);
-    setFormOpen(true);
-  }
-
-  function handleCreateFormOpen() {
-    setSelectedEvent(null);
-    setFormOpen(true);
-  }
-
   return (
     <Fragment>
       <Route path="/" exact component={Homepage} />
@@ -29,11 +16,11 @@ function App() {
         path={"/(.+)"}
         render={() => (
           <>
-            <Navbar setFormOpen={handleCreateFormOpen} />
+            <Navbar  />
             <Container className="main">
               <Route path="/events" exact component={EventDashboard} />
               <Route path="/events/:id" exact component={EventDetailedPage} />
-              <Route path="/createEvent" component={EventForm} />
+              <Route path={["/createEvent", "/manage/:id"]} component={EventForm} />
             </Container>
           </>
         )}

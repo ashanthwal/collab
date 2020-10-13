@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import { Grid } from "semantic-ui-react";
-import EventForm from "./EventForm";
 import EventList from "./EventList";
 import { sampleData } from "../../../app/api/sampleData";
 
-function EventDashboard({ formOpen, setFormOpen, selectEvent, selectedEvent }) {
+function EventDashboard() {
   const [events, setEvents] = useState(sampleData);
 
-  function handleCreateEvent(event) {
+  /* function handleCreateEvent(event) {
     setEvents([...events, event]);
-    setFormOpen(true);
   }
 
   //Update an event
@@ -19,7 +17,7 @@ function EventDashboard({ formOpen, setFormOpen, selectEvent, selectedEvent }) {
       events.map((evt) => (evt.id === updatedEvent.id ? updatedEvent : evt))
     );
     selectEvent(null);
-  }
+  } */
 
   //Delete an event
   function handleDeleteEvent(eventId) {
@@ -32,21 +30,11 @@ function EventDashboard({ formOpen, setFormOpen, selectEvent, selectedEvent }) {
         <Grid.Column width={10}>
           <EventList
             events={events}
-            selectEvent={selectEvent}
             deleteEvent={handleDeleteEvent}
           />
         </Grid.Column>
         <Grid.Column width={6}>
-          {formOpen === true && (
-            <EventForm
-              setFormOpen={setFormOpen}
-              setEvents={setEvents}
-              createEvent={handleCreateEvent}
-              selectedEvent={selectedEvent}
-              updatedEvent={handleUpdateEvent}
-              key={selectedEvent ? selectedEvent.id : null}
-            />
-          )}
+          <h3>Event Filters</h3>
         </Grid.Column>
       </Grid>
     </div>
